@@ -66,7 +66,6 @@ export function ProjectCard({ project, stars }: ProjectCardProps) {
             <Link
               href={project.docsUrl}
               target="_blank"
-              rel="noopener noreferrer"
               className="inline-flex items-center gap-1 text-sm text-foreground transition-colors hover:text-foreground/70"
             >
               <span>Docs</span>
