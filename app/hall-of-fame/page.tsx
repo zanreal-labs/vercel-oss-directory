@@ -1,6 +1,8 @@
 import { Nav } from "@/components/nav"
 import { ProjectCard } from "@/components/project-card"
 import { getTopProjects } from "@/lib/top-projects"
+import { cn } from "@/lib/utils"
+import { Crown } from "lucide-react"
 
 export const metadata = {
   title: "Hall of Fame - Vercel OSS Program",
@@ -23,12 +25,12 @@ export default async function HallOfFamePage() {
         <div className="space-y-4">
           {topProjects.map((project, index) => (
             <div key={project.name} className="relative">
-              <div className="absolute -left-4 top-1/2 z-10 flex size-8 -translate-y-1/2 items-center justify-center rounded-full bg-gradient-to-br from-yellow-400 to-yellow-600 text-sm font-bold text-white shadow-lg">
-                {index + 1}
+              <div className={
+                cn("absolute -left-4 top-0 z-10 flex size-8 -translate-y-1/2 items-center justify-center rounded-full text-sm font-bold text-white shadow-lg", index === 0 ? "bg-gradient-to-br from-yellow-400 to-yellow-600" : "bg-muted")
+              }>
+                {index === 0 ? <Crown /> : index + 1}
               </div>
-              <div className="pl-8">
-                <ProjectCard project={project} />
-              </div>
+              <ProjectCard project={project} />
             </div>
           ))}
         </div>
