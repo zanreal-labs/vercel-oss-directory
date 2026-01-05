@@ -1,5 +1,9 @@
-import { defineDocs, defineConfig, defineCollections } from "fumadocs-mdx/config"
-import { z } from "zod"
+import {
+  defineCollections,
+  defineConfig,
+  defineDocs,
+} from "fumadocs-mdx/config";
+import { z } from "zod";
 
 export const { docs, meta } = defineDocs({
   dir: "content/projects",
@@ -17,6 +21,6 @@ export const { docs, meta } = defineDocs({
       category: z.string(),
     }),
   }),
-})
+});
 
-export default defineConfig()
+export default defineConfig();
