@@ -26,7 +26,7 @@ export default async function HallOfFamePage() {
           {topProjects.map((project, index) => (
             <div key={project.name} className="relative">
               <div className={
-                cn("absolute -left-4 top-0 z-10 flex size-8 -translate-y-1/2 items-center justify-center rounded-full text-sm font-bold text-white shadow-lg", index === 0 ? "bg-gradient-to-br from-yellow-400 to-yellow-600" : "bg-muted")
+                cn("absolute -left-4 top-0 z-10 flex size-8 -translate-y-1/2 items-center justify-center rounded-full text-sm font-bold text-muted-foreground shadow-lg", index === 0 ? "bg-gradient-to-br from-yellow-400 to-yellow-600 text-yellow-900" : "bg-muted")
               }>
                 {index === 0 ? <Crown /> : index + 1}
               </div>
