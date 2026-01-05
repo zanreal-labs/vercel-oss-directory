@@ -26,8 +26,10 @@ export default async function Page() {
   // Fetch all projects with stars server-side
   const projectsWithStars = await getAllProjectsWithStars()
 
-  // Extract unique categories from projects
-  const categories = Array.from(new Set(projects.map((p) => p.category))).sort()
+  // Extract unique categories from projects (filter out undefined/null values)
+  const categories = Array.from(
+    new Set(projects.map((p) => p.category).filter((c): c is string => Boolean(c)))
+  ).sort()
 
   return (
     <main className="min-h-screen bg-background">

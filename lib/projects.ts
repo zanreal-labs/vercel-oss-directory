@@ -1,3 +1,5 @@
+import { docs } from "@/.source/server"
+
 export interface Project {
   name: string
   description: string
@@ -8,7 +10,22 @@ export interface Project {
   category: string
 }
 
-export const projects: Project[] = [
+// Ładowanie projektów z Fumadocs MDX loader
+// Fumadocs przechowuje custom frontmatter properties bezpośrednio na obiekcie page
+export const projects: Project[] = docs.map((page: any) => {
+  return {
+    name: (page.name || page.title) as string,
+    description: page.description as string,
+    cohort: page.cohort as string,
+    url: page.url as string,
+    docsUrl: page.docsUrl as string | undefined,
+    stars: page.stars as number | undefined,
+    category: page.category as string,
+  }
+})
+
+// Stara tablica projektów - zachowana jako backup
+export const legacyProjects: Project[] = [
   // Spring 2025 Cohort
   {
     name: "Vecto3d",
