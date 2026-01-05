@@ -1,0 +1,10 @@
+# Ignore shadcn/ui components (external code with namespace imports pattern)
+components/ui
+
+# Ignore generated files
+.source
+.next
+node_modules
+
+# Ignore scripts (development only)
+scripts

@@ -1,12 +1,18 @@
-import { Badge } from "@/components/ui/badge"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { ExternalLink } from "lucide-react"
-import Link from "next/link"
-import type { Project } from "@/lib/projects"
-import { GitHubStarsFallback } from "@/components/github-stars"
+import { ExternalLink } from "lucide-react";
+import Link from "next/link";
+import { GitHubStarsFallback } from "@/components/github-stars";
+import { Badge } from "@/components/ui/badge";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import type { Project } from "@/lib/projects";
 
 interface ProjectCardSkeletonProps {
-  project: Project
+  project: Project;
 }
 
 export function ProjectCardSkeleton({ project }: ProjectCardSkeletonProps) {
@@ -17,10 +23,10 @@ export function ProjectCardSkeleton({ project }: ProjectCardSkeletonProps) {
           <div className="flex-1 space-y-2">
             <CardTitle className="text-xl">{project.name}</CardTitle>
             <div className="flex items-center gap-2">
-              <Badge variant="secondary" className="text-xs font-normal">
+              <Badge className="font-normal text-xs" variant="secondary">
                 {project.category}
               </Badge>
-              <Badge variant="outline" className="text-xs font-normal">
+              <Badge className="font-normal text-xs" variant="outline">
                 {project.cohort}
               </Badge>
             </div>
@@ -29,22 +35,24 @@ export function ProjectCardSkeleton({ project }: ProjectCardSkeletonProps) {
         </div>
       </CardHeader>
       <CardContent>
-        <CardDescription className="line-clamp-3 text-pretty">{project.description}</CardDescription>
+        <CardDescription className="line-clamp-3 text-pretty">
+          {project.description}
+        </CardDescription>
         <div className="mt-4 flex items-center gap-3">
           <Link
+            className="inline-flex items-center gap-1 text-foreground text-sm transition-colors hover:text-foreground/70"
             href={project.url}
-            target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-1 text-sm text-foreground transition-colors hover:text-foreground/70"
+            target="_blank"
           >
             <span>GitHub</span>
             <ExternalLink className="size-3.5" />
           </Link>
           {project.docsUrl && (
             <Link
+              className="inline-flex items-center gap-1 text-foreground text-sm transition-colors hover:text-foreground/70"
               href={project.docsUrl}
               target="_blank"
-              className="inline-flex items-center gap-1 text-sm text-foreground transition-colors hover:text-foreground/70"
             >
               <span>Docs</span>
               <ExternalLink className="size-3.5" />
@@ -53,5 +61,5 @@ export function ProjectCardSkeleton({ project }: ProjectCardSkeletonProps) {
         </div>
       </CardContent>
     </Card>
-  )
+  );
 }

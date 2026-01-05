@@ -1,20 +1,21 @@
-import "./globals.css"
+import "./globals.css";
 
-import type React from "react"
-import type { Metadata } from "next"
-import { Geist, Geist_Mono } from "next/font/google"
-import { Analytics } from "@vercel/analytics/next"
-import { ThemeProvider } from "@/components/theme-provider"
-import { Footer } from "@/components/footer"
-import { NuqsAdapter } from "nuqs/adapters/next/app"
-import { Suspense } from "react"
+import { Analytics } from "@vercel/analytics/next";
+import type { Metadata } from "next";
+import { Geist, Geist_Mono } from "next/font/google";
+import { NuqsAdapter } from "nuqs/adapters/next/app";
+import type React from "react";
+import { Suspense } from "react";
+import { Footer } from "@/components/footer";
+import { ThemeProvider } from "@/components/theme-provider";
 
-const _geist = Geist({ subsets: ["latin"] })
-const _geistMono = Geist_Mono({ subsets: ["latin"] })
+const _geist = Geist({ subsets: ["latin"] });
+const _geistMono = Geist_Mono({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "Vercel OSS Program - Projects Directory",
-  description: "Browse open source projects participating in the Vercel OSS Program",
+  description:
+    "Browse open source projects participating in the Vercel OSS Program",
   generator: "v0.app",
   icons: {
     icon: [
@@ -33,19 +34,24 @@ export const metadata: Metadata = {
     ],
     apple: "/apple-icon.png",
   },
-}
+};
 
 export default function RootLayout({
   children,
 }: Readonly<{
-  children: React.ReactNode
+  children: React.ReactNode;
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className={`font-sans antialiased flex min-h-screen flex-col`}>
+      <body className={"flex min-h-screen flex-col font-sans antialiased"}>
         <NuqsAdapter>
           <Suspense>
-            <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
+            <ThemeProvider
+              attribute="class"
+              defaultTheme="system"
+              disableTransitionOnChange
+              enableSystem
+            >
               <div className="flex-1">{children}</div>
               <Footer />
             </ThemeProvider>
@@ -54,5 +60,5 @@ export default function RootLayout({
         <Analytics />
       </body>
     </html>
-  )
+  );
 }

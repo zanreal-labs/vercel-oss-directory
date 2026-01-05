@@ -1,29 +1,35 @@
-import { Badge } from "@/components/ui/badge"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { ExternalLink, Star, Users } from "lucide-react"
-import Link from "next/link"
-import type { Project } from "@/lib/projects"
-import { formatStars } from "@/lib/projects"
+import { ExternalLink, Star, Users } from "lucide-react";
+import Link from "next/link";
+import { Badge } from "@/components/ui/badge";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import type { Project } from "@/lib/projects";
+import { formatStars } from "@/lib/projects";
 
 interface ProjectCardProps {
-  project: Project
-  stars?: number | null
+  project: Project;
+  stars?: number | null;
 }
 
 function isUserProfile(url: string): boolean {
   try {
-    const urlObj = new URL(url)
-    const parts = urlObj.pathname.split("/").filter(Boolean)
+    const urlObj = new URL(url);
+    const parts = urlObj.pathname.split("/").filter(Boolean);
     // User profile has only 1 path segment: /username
     // Repository has 2+ path segments: /owner/repo
-    return parts.length === 1
+    return parts.length === 1;
   } catch {
-    return false
+    return false;
   }
 }
 
 export function ProjectCard({ project, stars }: ProjectCardProps) {
-  const isProfile = isUserProfile(project.url)
+  const isProfile = isUserProfile(project.url);
 
   return (
     <Card className="group h-full transition-colors hover:border-foreground/20">
@@ -32,14 +38,14 @@ export function ProjectCard({ project, stars }: ProjectCardProps) {
           <div className="flex-1 space-y-2">
             <CardTitle className="text-xl">{project.name}</CardTitle>
             <div className="flex items-center gap-2">
-              <Badge variant="secondary" className="text-xs font-normal">
+              <Badge className="font-normal text-xs" variant="secondary">
                 {project.category}
               </Badge>
-              <Badge variant="outline" className="text-xs font-normal">
+              <Badge className="font-normal text-xs" variant="outline">
                 {project.cohort}
               </Badge>
             </div>
-            <div className="flex items-center gap-1 text-sm text-muted-foreground">
+            <div className="flex items-center gap-1 text-muted-foreground text-sm">
               {isProfile ? (
                 <Users className="size-4" />
               ) : (
@@ -51,22 +57,24 @@ export function ProjectCard({ project, stars }: ProjectCardProps) {
         </div>
       </CardHeader>
       <CardContent>
-        <CardDescription className="line-clamp-3 text-pretty">{project.description}</CardDescription>
+        <CardDescription className="line-clamp-3 text-pretty">
+          {project.description}
+        </CardDescription>
         <div className="mt-4 flex items-center gap-3">
           <Link
+            className="inline-flex items-center gap-1 text-foreground text-sm transition-colors hover:text-foreground/70"
             href={project.url}
-            target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-1 text-sm text-foreground transition-colors hover:text-foreground/70"
+            target="_blank"
           >
             <span>GitHub</span>
             <ExternalLink className="size-3.5" />
           </Link>
           {project.docsUrl && (
             <Link
+              className="inline-flex items-center gap-1 text-foreground text-sm transition-colors hover:text-foreground/70"
               href={project.docsUrl}
               target="_blank"
-              className="inline-flex items-center gap-1 text-sm text-foreground transition-colors hover:text-foreground/70"
             >
               <span>Docs</span>
               <ExternalLink className="size-3.5" />
@@ -75,5 +83,5 @@ export function ProjectCard({ project, stars }: ProjectCardProps) {
         </div>
       </CardContent>
     </Card>
-  )
+  );
 }
