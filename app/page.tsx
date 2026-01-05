@@ -1,20 +1,19 @@
-"use client"
-
 import { ProjectsGrid } from "@/components/projects-grid"
 import { ProjectsHeader } from "@/components/projects-header"
 import { Nav } from "@/components/nav"
 import { projects } from "@/lib/projects"
-import { useState, useMemo } from "react"
 
-export default function Page() {
-  const [searchQuery, setSearchQuery] = useState("")
-  const [selectedCategory, setSelectedCategory] = useState("all")
+export default async function Page({
+  searchParams,
+}: {
+  searchParams: Promise<{ q?: string; category?: string }>
+}) {
+  const params = await searchParams
+  const searchQuery = params.q || ""
+  const selectedCategory = params.category || "all"
 
   // Extract unique categories from projects
-  const categories = useMemo(() => {
-    const cats = new Set(projects.map((p) => p.category))
-    return Array.from(cats).sort()
-  }, [])
+  const categories = Array.from(new Set(projects.map((p) => p.category))).sort()
 
   return (
     <main className="min-h-screen bg-background">
@@ -22,8 +21,6 @@ export default function Page() {
       <ProjectsHeader
         searchQuery={searchQuery}
         selectedCategory={selectedCategory}
-        onSearchChange={setSearchQuery}
-        onCategoryChange={setSelectedCategory}
         categories={categories}
       />
       <ProjectsGrid searchQuery={searchQuery} selectedCategory={selectedCategory} />

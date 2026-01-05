@@ -27,7 +27,6 @@ export default function HallOfFamePage() {
                   {index + 1}
                 </div>
               )}
-              {/* @ts-expect-error Async Server Component */}
               <ProjectCard project={project} />
             </div>
           ))}

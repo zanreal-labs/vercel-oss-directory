@@ -3,13 +3,13 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { ExternalLink } from "lucide-react"
 import Link from "next/link"
 import type { Project } from "@/lib/projects"
-import { GitHubStars } from "@/components/github-stars"
+import { GitHubStarsFallback } from "@/components/github-stars"
 
-interface ProjectCardProps {
+interface ProjectCardSkeletonProps {
   project: Project
 }
 
-export function ProjectCard({ project }: ProjectCardProps) {
+export function ProjectCardSkeleton({ project }: ProjectCardSkeletonProps) {
   return (
     <Card className="group h-full transition-colors hover:border-foreground/20">
       <CardHeader>
@@ -24,8 +24,7 @@ export function ProjectCard({ project }: ProjectCardProps) {
                 {project.cohort}
               </Badge>
             </div>
-            {/* @ts-expect-error Async Server Component */}
-            <GitHubStars repoUrl={project.url} />
+            <GitHubStarsFallback />
           </div>
         </div>
       </CardHeader>

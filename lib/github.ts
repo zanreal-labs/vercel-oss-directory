@@ -1,11 +1,9 @@
-"use cache"
-
 /**
  * GitHub API service for fetching repository information
  * Uses Next.js 16 Cache Components for automatic caching
  */
 
-import { cacheLife } from "next/cache"
+import "server-only"
 
 const GITHUB_API_BASE = "https://api.github.com/repos"
 
@@ -31,12 +29,10 @@ function parseGitHubUrl(url: string): { owner: string; repo: string } | null {
 }
 
 /**
- * Fetch GitHub repository stars count with Next.js 16 Cache Components
- * Automatically cached for 1 hour using "use cache" directive
+ * Fetch GitHub repository stars count
+ * Caching is handled at the component level with "use cache"
  */
 export async function getGitHubStars(repoUrl: string): Promise<number | null> {
-  "use cache"
-  cacheLife("hours")
 
   const parsed = parseGitHubUrl(repoUrl)
 
@@ -83,9 +79,6 @@ export async function getGitHubStars(repoUrl: string): Promise<number | null> {
 export async function getGitHubStarsBatch(
   urls: string[]
 ): Promise<Map<string, number | null>> {
-  "use cache"
-  cacheLife("hours")
-
   const results = new Map<string, number | null>()
 
   // Fetch in parallel with concurrency limit

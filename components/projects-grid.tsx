@@ -1,4 +1,5 @@
 import { ProjectCard } from "@/components/project-card"
+import { ProjectCardSkeleton } from "@/components/project-card-skeleton"
 import { projects } from "@/lib/projects"
 import { search } from "@zanreal/search"
 import { Suspense } from "react"
@@ -32,13 +33,7 @@ export function ProjectsGrid({ searchQuery, selectedCategory }: ProjectsGridProp
       ) : (
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {displayProjects.map((project) => (
-            <Suspense key={project.name} fallback={
-              // @ts-expect-error Async Server Component
-              <ProjectCard project={project} isLoading />
-            }>
-              {/* @ts-expect-error Async Server Component */}
-              <ProjectCard project={project} />
-            </Suspense>
+            <ProjectCard key={project.name} project={project} />
           ))}
         </div>
       )}

@@ -2,12 +2,16 @@ import { Star } from "lucide-react"
 import { getGitHubStars } from "@/lib/github"
 import { formatStars } from "@/lib/projects"
 import { Skeleton } from "@/components/ui/skeleton"
+import { cacheLife } from "next/cache"
 
 interface GitHubStarsProps {
   repoUrl: string
 }
 
 export async function GitHubStars({ repoUrl }: GitHubStarsProps) {
+  "use cache"
+  cacheLife("hours")
+  
   const stars = await getGitHubStars(repoUrl)
 
   return (

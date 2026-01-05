@@ -9,22 +9,22 @@ import {
   SelectValue,
 } from "@/components/ui/select"
 import { Search } from "lucide-react"
+import { useQueryState } from "nuqs"
 
 interface ProjectsHeaderProps {
   searchQuery: string
   selectedCategory: string
-  onSearchChange: (query: string) => void
-  onCategoryChange: (category: string) => void
   categories: string[]
 }
 
 export function ProjectsHeader({
   searchQuery,
   selectedCategory,
-  onSearchChange,
-  onCategoryChange,
   categories,
 }: ProjectsHeaderProps) {
+  const [query, setQuery] = useQueryState("q", { defaultValue: searchQuery })
+  const [category, setCategory] = useQueryState("category", { defaultValue: selectedCategory })
+
   return (
     <div className="border-b border-border">
       <div className="mx-auto max-w-7xl px-6 py-16 md:py-24">
@@ -44,21 +44,21 @@ export function ProjectsHeader({
               type="search"
               placeholder="Search projects..."
               className="h-12 rounded-full bg-muted/50 pl-11 pr-4 text-base border-muted"
-              value={searchQuery}
-              onChange={(e) => onSearchChange(e.target.value)}
+              value={query ?? ""}
+              onChange={(e) => setQuery(e.target.value || null)}
             />
           </div>
 
           <div className="flex justify-center">
-            <Select value={selectedCategory} onValueChange={onCategoryChange}>
+            <Select value={category ?? "all"} onValueChange={(value) => setCategory(value === "all" ? null : value)}>
               <SelectTrigger className="w-48">
                 <SelectValue placeholder="Filter by category" />
               </SelectTrigger>
               <SelectContent>
                 <SelectItem value="all">All Categories</SelectItem>
-                {categories.map((category) => (
-                  <SelectItem key={category} value={category}>
-                    {category}
+                {categories.map((cat) => (
+                  <SelectItem key={cat} value={cat}>
+                    {cat}
                   </SelectItem>
                 ))}
               </SelectContent>
