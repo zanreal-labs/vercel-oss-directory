@@ -34,7 +34,7 @@ export function ProjectsHeader({ categories }: ProjectsHeaderProps) {
         </div>
 
         <div className="mx-auto mt-8 max-w-2xl">
-          <InputGroup className="rounded-full bg-muted">
+          <InputGroup className="rounded-full bg-muted h-12">
             <InputGroupAddon>
               <Search />
             </InputGroupAddon>
@@ -44,14 +44,14 @@ export function ProjectsHeader({ categories }: ProjectsHeaderProps) {
               value={query ?? ""}
               onChange={(e) => setQuery(e.target.value || null)}
             />
-            <InputGroupAddon align="inline-end" className="pr-1">
+            <InputGroupAddon align="inline-end">
               <Popover open={open} onOpenChange={setOpen}>
                 <PopoverTrigger asChild>
                   <Button
                     variant="ghost"
                     role="combobox"
                     aria-expanded={open}
-                    className="justify-between text-sm rounded-full"
+                    className="justify-between h-full text-sm rounded-full"
                   >
                     {selectedCategory?.label}
                     <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
