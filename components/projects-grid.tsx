@@ -1,27 +1,28 @@
-"use client"
-
 import { ProjectCard } from "@/components/project-card"
+import { ProjectCardSkeleton } from "@/components/project-card-skeleton"
 import { projects } from "@/lib/projects"
-import { useSearch } from "@zanreal/search"
-import { useMemo } from "react"
+import { search } from "@zanreal/search"
+import { Suspense } from "react"
 
 interface ProjectsGridProps {
   searchQuery: string
+  selectedCategory: string
 }
 
-export function ProjectsGrid({ searchQuery }: ProjectsGridProps) {
-  const sortedProjects = useMemo(() => {
-    return [...projects].sort((a, b) => a.name.localeCompare(b.name))
-  }, [])
+export function ProjectsGrid({ searchQuery, selectedCategory }: ProjectsGridProps) {
+  const sortedProjects = [...projects].sort((a, b) => a.name.localeCompare(b.name))
 
-  const { results } = useSearch({
-    items: sortedProjects,
-    query: searchQuery,
-    keys: ["name", "description", "category", "cohort"],
-    threshold: 0.3,
+  // Filter by category first
+  const categoryFiltered = selectedCategory === "all" 
+    ? sortedProjects 
+    : sortedProjects.filter((p) => p.category === selectedCategory)
+
+  const searchResults = search(categoryFiltered, searchQuery, {
+    fields: ["name", "description", "category", "cohort"],
+    fuzzyThreshold: 0.3,
   })
 
-  const displayProjects = searchQuery ? results : sortedProjects
+  const displayProjects = searchQuery ? searchResults.map(r => r.item) : categoryFiltered
 
   return (
     <div className="mx-auto max-w-7xl px-6 py-16">

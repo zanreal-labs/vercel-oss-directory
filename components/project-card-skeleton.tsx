@@ -1,30 +1,15 @@
 import { Badge } from "@/components/ui/badge"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { ExternalLink, Star, Users } from "lucide-react"
+import { ExternalLink } from "lucide-react"
 import Link from "next/link"
 import type { Project } from "@/lib/projects"
-import { formatStars } from "@/lib/projects"
+import { GitHubStarsFallback } from "@/components/github-stars"
 
-interface ProjectCardProps {
+interface ProjectCardSkeletonProps {
   project: Project
-  stars?: number | null
 }
 
-function isUserProfile(url: string): boolean {
-  try {
-    const urlObj = new URL(url)
-    const parts = urlObj.pathname.split("/").filter(Boolean)
-    // User profile has only 1 path segment: /username
-    // Repository has 2+ path segments: /owner/repo
-    return parts.length === 1
-  } catch {
-    return false
-  }
-}
-
-export function ProjectCard({ project, stars }: ProjectCardProps) {
-  const isProfile = isUserProfile(project.url)
-
+export function ProjectCardSkeleton({ project }: ProjectCardSkeletonProps) {
   return (
     <Card className="group h-full transition-colors hover:border-foreground/20">
       <CardHeader>
@@ -39,14 +24,7 @@ export function ProjectCard({ project, stars }: ProjectCardProps) {
                 {project.cohort}
               </Badge>
             </div>
-            <div className="flex items-center gap-1 text-sm text-muted-foreground">
-              {isProfile ? (
-                <Users className="size-4" />
-              ) : (
-                <Star className="size-4" />
-              )}
-              <span>{formatStars(stars ?? undefined)}</span>
-            </div>
+            <GitHubStarsFallback />
           </div>
         </div>
       </CardHeader>

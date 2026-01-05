@@ -4,7 +4,7 @@ export interface Project {
   cohort: string
   url: string
   docsUrl?: string
-  stars: number
+  stars?: number
   category: string
 }
 
@@ -16,7 +16,6 @@ export const projects: Project[] = [
     cohort: "Spring 2025",
     url: "https://github.com/lakshaybhushan/vecto3d",
     docsUrl: "https://www.vecto3d.xyz/",
-    stars: 1000,
     category: "3D Tool",
   },
   {
@@ -25,7 +24,6 @@ export const projects: Project[] = [
     cohort: "Spring 2025",
     url: "https://github.com/johnlindquist/kit",
     docsUrl: "https://www.scriptkit.com/",
-    stars: 8000,
     category: "Developer Tool",
   },
   {
@@ -34,7 +32,6 @@ export const projects: Project[] = [
     cohort: "Spring 2025",
     url: "https://github.com/darkroomengineering/lenis",
     docsUrl: "https://lenis.darkroom.engineering/",
-    stars: 10000,
     category: "Animation",
   },
   {
@@ -44,7 +41,6 @@ export const projects: Project[] = [
     cohort: "Spring 2025",
     url: "https://github.com/fuma-nama/fumadocs",
     docsUrl: "https://fumadocs.dev/",
-    stars: 6000,
     category: "Documentation",
   },
   {
@@ -53,7 +49,6 @@ export const projects: Project[] = [
     cohort: "Spring 2025",
     url: "https://github.com/sadmann7/shadcn-table",
     docsUrl: "https://tablecn.com/",
-    stars: 5000,
     category: "UI Component",
   },
   {
@@ -62,7 +57,6 @@ export const projects: Project[] = [
     cohort: "Spring 2025",
     url: "https://github.com/miurla/morphic",
     docsUrl: "https://www.morphic.sh/",
-    stars: 7300,
     category: "AI",
   },
   {
@@ -71,7 +65,6 @@ export const projects: Project[] = [
     cohort: "Spring 2025",
     url: "https://github.com/ibelick/zola",
     docsUrl: "https://www.zola.chat/",
-    stars: 1000,
     category: "AI",
   },
   {
@@ -80,7 +73,6 @@ export const projects: Project[] = [
     cohort: "Spring 2025",
     url: "https://github.com/fabian-hiller/valibot",
     docsUrl: "https://valibot.dev/",
-    stars: 7500,
     category: "Validation",
   },
   {
@@ -89,7 +81,6 @@ export const projects: Project[] = [
     cohort: "Spring 2025",
     url: "https://github.com/hasanharman/form-builder",
     docsUrl: "https://www.shadcn-form.com/",
-    stars: 2200,
     category: "UI Component",
   },
   {
@@ -98,7 +89,6 @@ export const projects: Project[] = [
     cohort: "Spring 2025",
     url: "https://github.com/parallax/jsPDF",
     docsUrl: "https://www.npmjs.com/package/jspdf",
-    stars: 29000,
     category: "PDF",
   },
   {
@@ -108,7 +98,6 @@ export const projects: Project[] = [
     cohort: "Spring 2025",
     url: "https://github.com/lobehub/lobe-chat",
     docsUrl: "https://lobechat.com",
-    stars: 60000,
     category: "AI",
   },
   {
@@ -117,7 +106,6 @@ export const projects: Project[] = [
     cohort: "Spring 2025",
     url: "https://github.com/Milkdown/milkdown",
     docsUrl: "https://milkdown.dev/",
-    stars: 10000,
     category: "Editor",
   },
   {
@@ -126,7 +114,6 @@ export const projects: Project[] = [
     cohort: "Spring 2025",
     url: "https://github.com/kokonut-labs/kokonutui",
     docsUrl: "https://kokonutui.com/",
-    stars: 1500,
     category: "UI Library",
   },
   {
@@ -135,7 +122,6 @@ export const projects: Project[] = [
     cohort: "Spring 2025",
     url: "https://github.com/47ng/nuqs",
     docsUrl: "https://nuqs.47ng.com/",
-    stars: 5000,
     category: "State Management",
   },
   {
@@ -144,7 +130,6 @@ export const projects: Project[] = [
     cohort: "Spring 2025",
     url: "https://github.com/z4nr34l/nemo",
     docsUrl: "https://nemo.zanreal.com/",
-    stars: 500,
     category: "Middleware",
   },
   {
@@ -153,7 +138,6 @@ export const projects: Project[] = [
     cohort: "Spring 2025",
     url: "https://github.com/Logging-Stuff/RetroUI",
     docsUrl: "https://retroui.dev/",
-    stars: 800,
     category: "UI Library",
   },
   {
@@ -162,7 +146,6 @@ export const projects: Project[] = [
     cohort: "Spring 2025",
     url: "https://github.com/jnsahaj/tweakcn",
     docsUrl: "https://tweakcn.com/",
-    stars: 2500,
     category: "Design Tool",
   },
   {
@@ -172,7 +155,6 @@ export const projects: Project[] = [
     cohort: "Spring 2025",
     url: "https://github.com/codelitdev/courselit",
     docsUrl: "https://courselit.app/",
-    stars: 1000,
     category: "E-commerce",
   },
   {
@@ -182,7 +164,6 @@ export const projects: Project[] = [
     cohort: "Spring 2025",
     url: "https://github.com/trycompai/comp",
     docsUrl: "https://trycomp.ai/",
-    stars: 500,
     category: "Compliance",
   },
   {
@@ -192,7 +173,6 @@ export const projects: Project[] = [
     cohort: "Spring 2025",
     url: "https://github.com/es-js/esjs",
     docsUrl: "https://editor.esjs.dev/",
-    stars: 300,
     category: "Programming Language",
   },
   {
@@ -201,7 +181,6 @@ export const projects: Project[] = [
     cohort: "Spring 2025",
     url: "https://github.com/LetsGetTechnical/elecretanta",
     docsUrl: "https://elfgorithm.vercel.app/",
-    stars: 200,
     category: "Community",
   },
   {
@@ -210,7 +189,6 @@ export const projects: Project[] = [
     cohort: "Spring 2025",
     url: "https://github.com/likeandscribe/frontpage",
     docsUrl: "https://frontpage.fyi/",
-    stars: 1000,
     category: "Social",
   },
 
@@ -221,7 +199,6 @@ export const projects: Project[] = [
     cohort: "Summer 2025",
     url: "https://github.com/OpenCut-app/OpenCut",
     docsUrl: "https://opencut.app",
-    stars: 27000,
     category: "Video Editor",
   },
   {
@@ -230,7 +207,6 @@ export const projects: Project[] = [
     cohort: "Summer 2025",
     url: "https://github.com/elie222/inbox-zero",
     docsUrl: "https://www.getinboxzero.com/",
-    stars: 8400,
     category: "Productivity",
   },
   {
@@ -239,7 +215,6 @@ export const projects: Project[] = [
     cohort: "Summer 2025",
     url: "https://github.com/TheOrcDev/8bitcn-ui",
     docsUrl: "https://www.8bitcn.com/",
-    stars: 600,
     category: "UI Library",
   },
   {
@@ -248,7 +223,6 @@ export const projects: Project[] = [
     cohort: "Summer 2025",
     url: "https://github.com/ncdai/react-wheel-picker",
     docsUrl: "https://react-wheel-picker.chanhdai.com/",
-    stars: 300,
     category: "UI Component",
   },
   {
@@ -257,7 +231,6 @@ export const projects: Project[] = [
     cohort: "Summer 2025",
     url: "https://github.com/mobxjs/mobx",
     docsUrl: "https://mobx.js.org/",
-    stars: 28000,
     category: "State Management",
   },
   {
@@ -266,7 +239,6 @@ export const projects: Project[] = [
     cohort: "Summer 2025",
     url: "https://github.com/Snouzy/workout-cool",
     docsUrl: "https://workout.cool/en",
-    stars: 5200,
     category: "Fitness",
   },
   {
@@ -275,7 +247,6 @@ export const projects: Project[] = [
     cohort: "Summer 2025",
     url: "https://github.com/ossdotnow/ossdotnow",
     docsUrl: "https://oss.now/",
-    stars: 400,
     category: "Discovery",
   },
   {
@@ -284,7 +255,6 @@ export const projects: Project[] = [
     cohort: "Summer 2025",
     url: "https://github.com/legions-developer/invoicely",
     docsUrl: "https://invoicely.gg/",
-    stars: 500,
     category: "Finance",
   },
   {
@@ -293,7 +263,6 @@ export const projects: Project[] = [
     cohort: "Summer 2025",
     url: "https://github.com/danielpetho/fancy",
     docsUrl: "https://fancycomponents.dev/",
-    stars: 2100,
     category: "UI Library",
   },
   {
@@ -303,7 +272,6 @@ export const projects: Project[] = [
     cohort: "Summer 2025",
     url: "https://github.com/R44VC0RP/inbound",
     docsUrl: "https://inbound.new/",
-    stars: 600,
     category: "Email",
   },
   {
@@ -312,7 +280,6 @@ export const projects: Project[] = [
     cohort: "Summer 2025",
     url: "https://github.com/srbhr/Resume-Matcher",
     docsUrl: "https://resumematcher.fyi/",
-    stars: 20000,
     category: "Career",
   },
   {
@@ -322,7 +289,6 @@ export const projects: Project[] = [
     cohort: "Summer 2025",
     url: "https://github.com/pgsty/pigsty",
     docsUrl: "https://pgsty.com/",
-    stars: 4000,
     category: "Database",
   },
   {
@@ -331,7 +297,6 @@ export const projects: Project[] = [
     cohort: "Summer 2025",
     url: "https://github.com/analogdotnow/Analog",
     docsUrl: "https://analog.now/",
-    stars: 1000,
     category: "Productivity",
   },
   {
@@ -340,7 +305,6 @@ export const projects: Project[] = [
     cohort: "Summer 2025",
     url: "https://github.com/Uaghazade1/kanba",
     docsUrl: "https://kanba.co/",
-    stars: 700,
     category: "Productivity",
   },
   {
@@ -349,7 +313,6 @@ export const projects: Project[] = [
     cohort: "Summer 2025",
     url: "https://github.com/nativewind/website",
     docsUrl: "https://www.nativewind.dev/",
-    stars: 6000,
     category: "React Native",
   },
   {
@@ -358,7 +321,6 @@ export const projects: Project[] = [
     cohort: "Summer 2025",
     url: "https://github.com/dysperse/dysperse",
     docsUrl: "https://dysperse.com/",
-    stars: 800,
     category: "Productivity",
   },
   {
@@ -367,7 +329,6 @@ export const projects: Project[] = [
     cohort: "Summer 2025",
     url: "https://github.com/mrzachnugent/react-native-reusables",
     docsUrl: "https://www.reactnativereusables.com/",
-    stars: 2000,
     category: "React Native",
   },
   {
@@ -376,7 +337,6 @@ export const projects: Project[] = [
     cohort: "Summer 2025",
     url: "https://github.com/toolwind",
     docsUrl: "https://toolwind.com/",
-    stars: 1000,
     category: "Tailwind",
   },
   {
@@ -385,7 +345,6 @@ export const projects: Project[] = [
     cohort: "Summer 2025",
     url: "https://github.com/preetsuthar17/Ikiform",
     docsUrl: "https://www.ikiform.com/",
-    stars: 900,
     category: "Forms",
   },
   {
@@ -394,7 +353,6 @@ export const projects: Project[] = [
     cohort: "Summer 2025",
     url: "https://github.com/motiadev/motia",
     docsUrl: "https://motia.dev/",
-    stars: 400,
     category: "Backend",
   },
   {
@@ -403,7 +361,6 @@ export const projects: Project[] = [
     cohort: "Summer 2025",
     url: "https://github.com/ln-dev7/circle",
     docsUrl: "https://circle.lndev.me/",
-    stars: 500,
     category: "Project Management",
   },
   {
@@ -412,7 +369,6 @@ export const projects: Project[] = [
     cohort: "Summer 2025",
     url: "https://github.com/electerm/electerm",
     docsUrl: "https://electerm.html5beta.com/",
-    stars: 12000,
     category: "Terminal",
   },
   {
@@ -421,7 +377,6 @@ export const projects: Project[] = [
     cohort: "Summer 2025",
     url: "https://github.com/plastic-labs/tutor-gpt",
     docsUrl: "https://chat.bloombot.ai/auth",
-    stars: 1500,
     category: "Education",
   },
   {
@@ -430,7 +385,6 @@ export const projects: Project[] = [
     cohort: "Summer 2025",
     url: "https://github.com/alineacms/alinea",
     docsUrl: "https://alineacms.com/",
-    stars: 1200,
     category: "CMS",
   },
   {
@@ -439,7 +393,6 @@ export const projects: Project[] = [
     cohort: "Summer 2025",
     url: "https://github.com/arihantcodes/spectrum-ui",
     docsUrl: "http://ui.spectrumhq.in/",
-    stars: 1000,
     category: "UI Library",
   },
   {
@@ -448,7 +401,6 @@ export const projects: Project[] = [
     cohort: "Summer 2025",
     url: "https://github.com/eyaltoledano/claude-task-master",
     docsUrl: "https://www.task-master.dev/",
-    stars: 20000,
     category: "Productivity",
   },
   {
@@ -458,7 +410,6 @@ export const projects: Project[] = [
     cohort: "Summer 2025",
     url: "https://github.com/ripgrim/bounty.new",
     docsUrl: "https://bounty.new/",
-    stars: 300,
     category: "Career",
   },
   {
@@ -467,7 +418,6 @@ export const projects: Project[] = [
     cohort: "Summer 2025",
     url: "https://github.com/maxrave-dev/SimpMusic",
     docsUrl: "https://simpmusic.org/",
-    stars: 2000,
     category: "Music",
   },
 
@@ -479,7 +429,6 @@ export const projects: Project[] = [
     cohort: "Fall 2025",
     url: "https://github.com/davila7/claude-code-templates",
     docsUrl: "https://www.aitmpl.com/agents",
-    stars: 7000,
     category: "AI",
   },
   {
@@ -489,7 +438,6 @@ export const projects: Project[] = [
     cohort: "Fall 2025",
     url: "https://github.com/the-ora/browser",
     docsUrl: "https://orabrowser.com",
-    stars: 960,
     category: "Browser",
   },
   {
@@ -498,7 +446,6 @@ export const projects: Project[] = [
     cohort: "Fall 2025",
     url: "https://github.com/databuddy-analytics/Databuddy",
     docsUrl: "https://www.databuddy.cc",
-    stars: 800,
     category: "Analytics",
   },
   {
@@ -507,7 +454,6 @@ export const projects: Project[] = [
     cohort: "Fall 2025",
     url: "https://github.com/opentagmanager/osstag",
     docsUrl: "https://www.osstag.com/",
-    stars: 500,
     category: "Analytics",
   },
   {
@@ -516,7 +462,6 @@ export const projects: Project[] = [
     cohort: "Fall 2025",
     url: "https://github.com/fluid-tools/wav0",
     docsUrl: "https://wav0.app",
-    stars: 600,
     category: "Music",
   },
   {
@@ -525,7 +470,6 @@ export const projects: Project[] = [
     cohort: "Fall 2025",
     url: "https://github.com/FranciscoMoretti/sparka",
     docsUrl: "https://www.sparka.ai/",
-    stars: 700,
     category: "AI",
   },
   {
@@ -534,7 +478,6 @@ export const projects: Project[] = [
     cohort: "Fall 2025",
     url: "https://github.com/usememos/memos",
     docsUrl: "https://www.usememos.com/",
-    stars: 44000,
     category: "Notes",
   },
   {
@@ -543,7 +486,6 @@ export const projects: Project[] = [
     cohort: "Fall 2025",
     url: "https://github.com/playwora/wora",
     docsUrl: "https://wora.app/",
-    stars: 400,
     category: "Music",
   },
   {
@@ -553,7 +495,6 @@ export const projects: Project[] = [
     cohort: "Fall 2025",
     url: "https://github.com/Railly/tinte",
     docsUrl: "https://www.tinte.dev",
-    stars: 468,
     category: "Design Tool",
   },
   {
@@ -562,7 +503,6 @@ export const projects: Project[] = [
     cohort: "Fall 2025",
     url: "https://github.com/imskyleen/animate-ui",
     docsUrl: "https://animate-ui.com",
-    stars: 2600,
     category: "UI Library",
   },
   {
@@ -571,7 +511,6 @@ export const projects: Project[] = [
     cohort: "Fall 2025",
     url: "https://github.com/element-plus/element-plus",
     docsUrl: "https://element-plus.org/",
-    stars: 24000,
     category: "UI Library",
   },
   {
@@ -580,7 +519,6 @@ export const projects: Project[] = [
     cohort: "Fall 2025",
     url: "https://github.com/zaidmukaddam/scira",
     docsUrl: "https://scira.ai",
-    stars: 10700,
     category: "AI",
   },
   {
@@ -589,7 +527,6 @@ export const projects: Project[] = [
     cohort: "Fall 2025",
     url: "https://github.com/pqoqubbw/icons",
     docsUrl: "https://lucide-animated.com",
-    stars: 5000,
     category: "Icons",
   },
   {
@@ -598,7 +535,6 @@ export const projects: Project[] = [
     cohort: "Fall 2025",
     url: "https://github.com/irsyadadl/intentui",
     docsUrl: "https://intentui.com",
-    stars: 1000,
     category: "UI Library",
   },
   {
@@ -607,7 +543,6 @@ export const projects: Project[] = [
     cohort: "Fall 2025",
     url: "https://github.com/adithya-s-k/GitVizz",
     docsUrl: "https://www.gitvizz.com/",
-    stars: 100,
     category: "Developer Tool",
   },
   {
@@ -616,7 +551,6 @@ export const projects: Project[] = [
     cohort: "Fall 2025",
     url: "https://github.com/pmndrs/triplex/",
     docsUrl: "https://triplex.dev/",
-    stars: 800,
     category: "Developer Tool",
   },
   {
@@ -625,7 +559,6 @@ export const projects: Project[] = [
     cohort: "Fall 2025",
     url: "https://github.com/AmanVarshney01/create-better-t-stack",
     docsUrl: "https://www.better-t-stack.dev/",
-    stars: 3800,
     category: "CLI Tool",
   },
   {
@@ -634,7 +567,6 @@ export const projects: Project[] = [
     cohort: "Fall 2025",
     url: "https://github.com/dodopayments/billingsdk",
     docsUrl: "https://billingsdk.com/",
-    stars: 200,
     category: "Payments",
   },
   {
@@ -644,7 +576,6 @@ export const projects: Project[] = [
     cohort: "Fall 2025",
     url: "https://github.com/KGeorgii/Publicat",
     docsUrl: "https://publicat.vercel.app/",
-    stars: 100,
     category: "Research",
   },
   {
@@ -653,7 +584,6 @@ export const projects: Project[] = [
     cohort: "Fall 2025",
     url: "https://github.com/HelixDB/helix-db",
     docsUrl: "https://www.helix-db.com",
-    stars: 500,
     category: "Database",
   },
   {
@@ -663,7 +593,6 @@ export const projects: Project[] = [
     cohort: "Fall 2025",
     url: "https://github.com/yamada-ui/yamada-ui",
     docsUrl: "https://yamada-ui.com",
-    stars: 2000,
     category: "UI Library",
   },
   {
@@ -672,7 +601,6 @@ export const projects: Project[] = [
     cohort: "Fall 2025",
     url: "https://github.com/tailark/blocks",
     docsUrl: "https://tailark.com",
-    stars: 1800,
     category: "UI Library",
   },
   {
@@ -681,7 +609,6 @@ export const projects: Project[] = [
     cohort: "Fall 2025",
     url: "https://github.com/OmniLens/OmniLens",
     docsUrl: "https://www.omnilens.xyz",
-    stars: 300,
     category: "DevOps",
   },
   {
@@ -690,7 +617,6 @@ export const projects: Project[] = [
     cohort: "Fall 2025",
     url: "https://github.com/cogwheel0/conduit",
     docsUrl: "https://cogwheel.app/",
-    stars: 250,
     category: "AI",
   },
   {
@@ -699,7 +625,6 @@ export const projects: Project[] = [
     cohort: "Fall 2025",
     url: "https://github.com/HXQLabs/Helixque",
     docsUrl: "https://helixque-live.vercel.app/",
-    stars: 200,
     category: "Communication",
   },
   {
@@ -708,7 +633,6 @@ export const projects: Project[] = [
     cohort: "Fall 2025",
     url: "https://github.com/usemarble/marble",
     docsUrl: "https://marblecms.com",
-    stars: 150,
     category: "CMS",
   },
   {
@@ -717,7 +641,6 @@ export const projects: Project[] = [
     cohort: "Fall 2025",
     url: "https://github.com/different-ai/zero-finance",
     docsUrl: "https://0.finance",
-    stars: 300,
     category: "Finance",
   },
   {
@@ -726,7 +649,6 @@ export const projects: Project[] = [
     cohort: "Fall 2025",
     url: "https://github.com/megh-bari/pattern-craft",
     docsUrl: "https://patterncraft.fun/",
-    stars: 2400,
     category: "Design Tool",
   },
   {
@@ -735,12 +657,14 @@ export const projects: Project[] = [
     cohort: "Fall 2025",
     url: "https://github.com/praveenjuge/teak",
     docsUrl: "https://teakvault.com",
-    stars: 400,
     category: "Design Tool",
   },
 ]
 
-export function formatStars(stars: number): string {
+export function formatStars(stars: number | undefined): string {
+  if (stars === undefined) {
+    return "—"
+  }
   if (stars >= 1000) {
     return `${(stars / 1000).toFixed(0)}k`
   }

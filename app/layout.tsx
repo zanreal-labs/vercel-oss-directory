@@ -1,9 +1,13 @@
+import "./globals.css"
+
 import type React from "react"
 import type { Metadata } from "next"
 import { Geist, Geist_Mono } from "next/font/google"
 import { Analytics } from "@vercel/analytics/next"
-import "./globals.css"
 import { ThemeProvider } from "@/components/theme-provider"
+import { Footer } from "@/components/footer"
+import { NuqsAdapter } from "nuqs/adapters/next/app"
+import { Suspense } from "react"
 
 const _geist = Geist({ subsets: ["latin"] })
 const _geistMono = Geist_Mono({ subsets: ["latin"] })
@@ -38,10 +42,15 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className={`font-sans antialiased`}>
-        <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
-          {children}
-        </ThemeProvider>
+      <body className={`font-sans antialiased flex min-h-screen flex-col`}>
+        <NuqsAdapter>
+          <Suspense>
+            <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
+              <div className="flex-1">{children}</div>
+              <Footer />
+            </ThemeProvider>
+          </Suspense>
+        </NuqsAdapter>
         <Analytics />
       </body>
     </html>
