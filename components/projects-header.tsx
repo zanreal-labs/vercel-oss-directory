@@ -4,10 +4,12 @@ import { InputGroup, InputGroupInput, InputGroupAddon } from "@/components/ui/in
 import { Button } from "@/components/ui/button"
 import { Command, CommandEmpty, CommandGroup, CommandInput, CommandItem, CommandList } from "@/components/ui/command"
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover"
-import { Search, Check, ChevronsUpDown } from "lucide-react"
+import { Search, Check, ChevronsUpDown, ArrowRight } from "lucide-react"
 import { useQueryState } from "nuqs"
 import { useState } from "react"
 import { cn } from "@/lib/utils"
+import Link from "next/link"
+import { Badge } from "./ui/badge"
 
 interface ProjectsHeaderProps {
   categories: string[]
@@ -23,8 +25,16 @@ export function ProjectsHeader({ categories }: ProjectsHeaderProps) {
 
   return (
     <div className="border-b border-border">
-      <div className="mx-auto max-w-7xl px-6 py-16 md:py-24">
-        <div className="mx-auto max-w-3xl text-center">
+      <div className="mx-auto max-w-7xl px-6 py-16 md:py-24 gap-8 flex flex-col">
+        <div className="mx-auto max-w-3xl w-full text-center flex flex-col gap-6 items-center">
+          <div className="flex md:flex-row flex-col md:items-center gap-8 mt-8">
+            <Badge asChild className="rounded-full justify-between w-fit" variant="outline">
+              <Link href="https://vercel.com/open-source-program" target="_blank" rel="noopener">
+                View program's official website
+                <ArrowRight />
+              </Link>
+            </Badge>
+          </div>
           <h1 className="text-4xl font-semibold tracking-tight text-foreground text-balance md:text-5xl lg:text-6xl">
             Vercel OSS Program
           </h1>
@@ -33,7 +43,7 @@ export function ProjectsHeader({ categories }: ProjectsHeaderProps) {
           </p>
         </div>
 
-        <div className="mx-auto mt-8 max-w-2xl">
+        <div className="mx-auto mt-8 max-w-2xl w-full">
           <InputGroup className="rounded-full bg-muted h-12">
             <InputGroupAddon>
               <Search />
