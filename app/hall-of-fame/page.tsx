@@ -7,6 +7,18 @@ import { Crown } from "lucide-react"
 export const metadata = {
   title: "Hall of Fame - Vercel OSS Program",
   description: "Top 10 open source projects by GitHub stars in the Vercel OSS Program",
+  openGraph: {
+    title: "Hall of Fame - Vercel OSS Program",
+    description: "Top 10 open source projects by GitHub stars in the Vercel OSS Program. Celebrating the most popular projects in our community.",
+    type: "website",
+    locale: "en_US",
+    siteName: "Vercel OSS Program",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Hall of Fame - Vercel OSS Program",
+    description: "Top 10 open source projects by GitHub stars in the Vercel OSS Program. Celebrating the most popular projects in our community.",
+  },
 }
 
 export default async function HallOfFamePage() {
