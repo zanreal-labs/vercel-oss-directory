@@ -114,9 +114,9 @@ export async function getGitHubStarsBatch(
     }));
 
     const batchResults = await Promise.all(promises);
-    batchResults.forEach(({ url, stars }) => {
+    for (const { url, stars } of batchResults) {
       results.set(url, stars);
-    });
+    }
   }
 
   return results;
