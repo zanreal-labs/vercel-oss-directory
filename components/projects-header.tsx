@@ -12,18 +12,12 @@ import { Search } from "lucide-react"
 import { useQueryState } from "nuqs"
 
 interface ProjectsHeaderProps {
-  searchQuery: string
-  selectedCategory: string
   categories: string[]
 }
 
-export function ProjectsHeader({
-  searchQuery,
-  selectedCategory,
-  categories,
-}: ProjectsHeaderProps) {
-  const [query, setQuery] = useQueryState("q", { defaultValue: searchQuery })
-  const [category, setCategory] = useQueryState("category", { defaultValue: selectedCategory })
+export function ProjectsHeader({ categories }: ProjectsHeaderProps) {
+  const [query, setQuery] = useQueryState("q")
+  const [category, setCategory] = useQueryState("category")
 
   return (
     <div className="border-b border-border">

@@ -4,7 +4,9 @@ import { projects } from "@/lib/projects"
 import { getGitHubStars } from "@/lib/github"
 import type { Project } from "@/lib/projects"
 
-export async function getTopProjects(limit: number = 10) {
+export type ProjectWithStars = Project & { fetchedStars: number | null }
+
+export async function getAllProjectsWithStars() {
   "use cache"
   cacheLife("hours")
 
@@ -16,10 +18,17 @@ export async function getTopProjects(limit: number = 10) {
     }))
   )
 
+  return projectsWithStars
+}
+
+export async function getTopProjects(limit: number = 10) {
+  "use cache"
+  cacheLife("hours")
+
+  const projectsWithStars = await getAllProjectsWithStars()
+
   // Sort by fetched stars and take top N
   return projectsWithStars
     .sort((a, b) => (b.fetchedStars ?? 0) - (a.fetchedStars ?? 0))
     .slice(0, limit)
 }
-
-export type ProjectWithStars = Project & { fetchedStars: number | null }
