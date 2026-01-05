@@ -9,7 +9,7 @@ export const metadata = {
 
 export default function HallOfFamePage() {
   // Sort projects by stars in descending order
-  const sortedProjects = [...projects].sort((a, b) => b.stars - a.stars)
+  const sortedProjects = [...projects].sort((a, b) => (b.stars ?? 0) - (a.stars ?? 0))
 
   return (
     <main className="min-h-screen bg-background">
@@ -27,6 +27,7 @@ export default function HallOfFamePage() {
                   {index + 1}
                 </div>
               )}
+              {/* @ts-expect-error Async Server Component */}
               <ProjectCard project={project} />
             </div>
           ))}

@@ -1,42 +1,16 @@
-"use client"
-
 import { Badge } from "@/components/ui/badge"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { ExternalLink, Star } from "lucide-react"
+import { ExternalLink } from "lucide-react"
 import Link from "next/link"
 import type { Project } from "@/lib/projects"
-import { formatStars } from "@/lib/projects"
-import { useEffect, useState } from "react"
-import { getGitHubStars } from "@/lib/github"
+import { GitHubStars, GitHubStarsFallback } from "@/components/github-stars"
 
 interface ProjectCardProps {
   project: Project
+  isLoading?: boolean
 }
 
-export function ProjectCard({ project }: ProjectCardProps) {
-  const [stars, setStars] = useState<number | undefined>(project.stars)
-  const [isLoading, setIsLoading] = useState(!project.stars)
-
-  useEffect(() => {
-    if (project.stars) return // Already has stars
-
-    const fetchStars = async () => {
-      try {
-        setIsLoading(true)
-        const starCount = await getGitHubStars(project.url)
-        if (starCount !== null) {
-          setStars(starCount)
-        }
-      } catch (error) {
-        console.error(`Failed to fetch stars for ${project.name}:`, error)
-      } finally {
-        setIsLoading(false)
-      }
-    }
-
-    fetchStars()
-  }, [project.url, project.stars, project.name])
-
+export async function ProjectCard({ project, isLoading }: ProjectCardProps) {
   return (
     <Card className="group h-full transition-colors hover:border-foreground/20">
       <CardHeader>
@@ -51,10 +25,12 @@ export function ProjectCard({ project }: ProjectCardProps) {
                 {project.cohort}
               </Badge>
             </div>
-            <div className="flex items-center gap-1 text-sm text-muted-foreground">
-              <Star className="size-4" />
-              <span>{isLoading ? "..." : formatStars(stars)}</span>
-            </div>
+            {isLoading ? (
+              <GitHubStarsFallback />
+            ) : (
+              // @ts-expect-error Async Server Component
+              <GitHubStars repoUrl={project.url} />
+            )}
           </div>
         </div>
       </CardHeader>

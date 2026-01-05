@@ -1,12 +1,13 @@
+"use cache"
+
 /**
  * GitHub API service for fetching repository information
- * Uses server-side API route to avoid rate limiting issues
+ * Uses Next.js 16 Cache Components for automatic caching
  */
 
-const CACHE_DURATION = 1000 * 60 * 60 // 1 hour in milliseconds
+import { cacheLife } from "next/cache"
 
-// In-memory cache with expiration
-const starCache = new Map<string, { stars: number; timestamp: number }>()
+const GITHUB_API_BASE = "https://api.github.com/repos"
 
 /**
  * Extract owner and repo from a GitHub URL
@@ -30,9 +31,13 @@ function parseGitHubUrl(url: string): { owner: string; repo: string } | null {
 }
 
 /**
- * Fetch GitHub repository stars count through server API
+ * Fetch GitHub repository stars count with Next.js 16 Cache Components
+ * Automatically cached for 1 hour using "use cache" directive
  */
 export async function getGitHubStars(repoUrl: string): Promise<number | null> {
+  "use cache"
+  cacheLife("hours")
+
   const parsed = parseGitHubUrl(repoUrl)
 
   if (!parsed) {
@@ -42,35 +47,27 @@ export async function getGitHubStars(repoUrl: string): Promise<number | null> {
 
   const cacheKey = `${parsed.owner}/${parsed.repo}`
 
-  // Check cache first
-  const cached = starCache.get(cacheKey)
-  if (cached && Date.now() - cached.timestamp < CACHE_DURATION) {
-    return cached.stars
-  }
-
   try {
-    // Call our own API route which has access to GITHUB_TOKEN
-    const response = await fetch(
-      `/api/github/stars?owner=${parsed.owner}&repo=${parsed.repo}`,
-      {
-        next: { revalidate: 3600 } as any, // Cache for 1 hour in Next.js
-      }
-    )
+    const apiUrl = `${GITHUB_API_BASE}/${parsed.owner}/${parsed.repo}`
+
+    const response = await fetch(apiUrl, {
+      headers: {
+        Accept: "application/vnd.github.v3+json",
+        ...(process.env.GITHUB_TOKEN && {
+          Authorization: `token ${process.env.GITHUB_TOKEN}`,
+        }),
+      },
+    })
 
     if (!response.ok) {
       console.warn(
-        `Failed to fetch GitHub stars for ${cacheKey}: ${response.status}`
+        `GitHub API error for ${cacheKey}: ${response.status} ${response.statusText}`
       )
       return null
     }
 
     const data = await response.json()
-    const stars = data.stars
-
-    if (stars !== null && stars !== undefined) {
-      // Store in cache
-      starCache.set(cacheKey, { stars, timestamp: Date.now() })
-    }
+    const stars = data.stargazers_count
 
     return stars
   } catch (error) {
@@ -81,14 +78,18 @@ export async function getGitHubStars(repoUrl: string): Promise<number | null> {
 
 /**
  * Batch fetch stars for multiple repositories
+ * Each call is individually cached via "use cache"
  */
 export async function getGitHubStarsBatch(
   urls: string[]
 ): Promise<Map<string, number | null>> {
+  "use cache"
+  cacheLife("hours")
+
   const results = new Map<string, number | null>()
 
-  // Fetch in parallel with concurrency limit (to avoid rate limiting)
-  const concurrency = 3
+  // Fetch in parallel with concurrency limit
+  const concurrency = 5
   for (let i = 0; i < urls.length; i += concurrency) {
     const batch = urls.slice(i, i + concurrency)
     const promises = batch.map(async (url) => ({

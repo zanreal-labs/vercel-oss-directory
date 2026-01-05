@@ -1,9 +1,7 @@
-"use client"
-
 import { ProjectCard } from "@/components/project-card"
 import { projects } from "@/lib/projects"
 import { search } from "@zanreal/search"
-import { useMemo } from "react"
+import { Suspense } from "react"
 
 interface ProjectsGridProps {
   searchQuery: string
@@ -11,24 +9,17 @@ interface ProjectsGridProps {
 }
 
 export function ProjectsGrid({ searchQuery, selectedCategory }: ProjectsGridProps) {
-  const sortedProjects = useMemo(() => {
-    return [...projects].sort((a, b) => a.name.localeCompare(b.name))
-  }, [])
+  const sortedProjects = [...projects].sort((a, b) => a.name.localeCompare(b.name))
 
   // Filter by category first
-  const categoryFiltered = useMemo(() => {
-    if (selectedCategory === "all") {
-      return sortedProjects
-    }
-    return sortedProjects.filter((p) => p.category === selectedCategory)
-  }, [sortedProjects, selectedCategory])
+  const categoryFiltered = selectedCategory === "all" 
+    ? sortedProjects 
+    : sortedProjects.filter((p) => p.category === selectedCategory)
 
-  const searchResults = useMemo(() => {
-    return search(categoryFiltered, searchQuery, {
-      fields: ["name", "description", "category", "cohort"],
-      fuzzyThreshold: 0.3,
-    })
-  }, [categoryFiltered, searchQuery])
+  const searchResults = search(categoryFiltered, searchQuery, {
+    fields: ["name", "description", "category", "cohort"],
+    fuzzyThreshold: 0.3,
+  })
 
   const displayProjects = searchQuery ? searchResults.map(r => r.item) : categoryFiltered
 
@@ -41,7 +32,13 @@ export function ProjectsGrid({ searchQuery, selectedCategory }: ProjectsGridProp
       ) : (
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {displayProjects.map((project) => (
-            <ProjectCard key={project.name} project={project} />
+            <Suspense key={project.name} fallback={
+              // @ts-expect-error Async Server Component
+              <ProjectCard project={project} isLoading />
+            }>
+              {/* @ts-expect-error Async Server Component */}
+              <ProjectCard project={project} />
+            </Suspense>
           ))}
         </div>
       )}
