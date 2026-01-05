@@ -6,34 +6,45 @@
 import "server-only"
 
 const GITHUB_API_BASE = "https://api.github.com/repos"
+const GITHUB_USER_API = "https://api.github.com/users"
 
 /**
- * Extract owner and repo from a GitHub URL
+ * Parse GitHub URL and determine if it's a user profile or repository
  */
-function parseGitHubUrl(url: string): { owner: string; repo: string } | null {
+function parseGitHubUrl(url: string): 
+  | { type: "repo"; owner: string; repo: string }
+  | { type: "user"; username: string }
+  | null {
   try {
     const urlObj = new URL(url)
     const parts = urlObj.pathname.split("/").filter(Boolean)
 
-    if (parts.length < 2) {
-      return null
+    if (parts.length === 1) {
+      // User profile: https://github.com/username
+      return {
+        type: "user",
+        username: parts[0],
+      }
+    } else if (parts.length >= 2) {
+      // Repository: https://github.com/owner/repo
+      return {
+        type: "repo",
+        owner: parts[0],
+        repo: parts[1],
+      }
     }
 
-    return {
-      owner: parts[0],
-      repo: parts[1],
-    }
+    return null
   } catch {
     return null
   }
 }
 
 /**
- * Fetch GitHub repository stars count
+ * Fetch GitHub repository stars or user followers count
  * Caching is handled at the component level with "use cache"
  */
 export async function getGitHubStars(repoUrl: string): Promise<number | null> {
-
   const parsed = parseGitHubUrl(repoUrl)
 
   if (!parsed) {
@@ -41,10 +52,19 @@ export async function getGitHubStars(repoUrl: string): Promise<number | null> {
     return null
   }
 
-  const cacheKey = `${parsed.owner}/${parsed.repo}`
-
   try {
-    const apiUrl = `${GITHUB_API_BASE}/${parsed.owner}/${parsed.repo}`
+    let apiUrl: string
+    let countField: string
+
+    if (parsed.type === "user") {
+      // Fetch user followers count
+      apiUrl = `${GITHUB_USER_API}/${parsed.username}`
+      countField = "followers"
+    } else {
+      // Fetch repository stars count
+      apiUrl = `${GITHUB_API_BASE}/${parsed.owner}/${parsed.repo}`
+      countField = "stargazers_count"
+    }
 
     const response = await fetch(apiUrl, {
       headers: {
@@ -57,17 +77,17 @@ export async function getGitHubStars(repoUrl: string): Promise<number | null> {
 
     if (!response.ok) {
       console.warn(
-        `GitHub API error for ${cacheKey}: ${response.status} ${response.statusText}`
+        `GitHub API error for ${repoUrl}: ${response.status} ${response.statusText}`
       )
       return null
     }
 
     const data = await response.json()
-    const stars = data.stargazers_count
+    const count = data[countField]
 
-    return stars
+    return count
   } catch (error) {
-    console.error(`Error fetching GitHub stars for ${cacheKey}:`, error)
+    console.error(`Error fetching GitHub data for ${repoUrl}:`, error)
     return null
   }
 }
