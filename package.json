@@ -5,7 +5,9 @@
   "scripts": {
     "build": "next build",
     "dev": "next dev",
-    "lint": "eslint .",
+    "lint": "ultracite check",
+    "lint:fix": "ultracite fix",
+    "format": "ultracite format",
     "start": "next start"
   },
   "dependencies": {
@@ -67,13 +69,10 @@
   },
   "devDependencies": {
     "@biomejs/biome": "2.3.11",
-    "@eslint/eslintrc": "^3.3.3",
     "@tailwindcss/postcss": "^4.1.9",
     "@types/node": "^22",
     "@types/react": "19.2.7",
     "@types/react-dom": "19.2.3",
-    "eslint": "^9.39.2",
-    "eslint-config-next": "^16.1.1",
     "postcss": "^8.5",
     "tailwindcss": "^4.1.9",
     "tsx": "^4.21.0",
