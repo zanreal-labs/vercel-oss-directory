@@ -30,7 +30,7 @@ export default async function HallOfFamePage() {
               }>
                 {index === 0 ? <Crown /> : index + 1}
               </div>
-              <ProjectCard project={project} />
+              <ProjectCard project={project} stars={project.fetchedStars} />
             </div>
           ))}
         </div>
