@@ -17,8 +17,7 @@ export function ProjectsHeader({ searchQuery, onSearchChange }: ProjectsHeaderPr
             Vercel OSS Program
           </h1>
           <p className="mt-4 text-lg text-muted-foreground text-pretty md:text-xl">
-            Supporting open source projects building the future of the web. Browse projects participating in the program
-            by cohort.
+            Supporting open source projects building the future of the web. Browse projects participating in the program.
           </p>
         </div>
 
