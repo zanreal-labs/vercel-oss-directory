@@ -1,14 +1,30 @@
 "use client"
 
 import { Input } from "@/components/ui/input"
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select"
 import { Search } from "lucide-react"
 
 interface ProjectsHeaderProps {
   searchQuery: string
+  selectedCategory: string
   onSearchChange: (query: string) => void
+  onCategoryChange: (category: string) => void
+  categories: string[]
 }
 
-export function ProjectsHeader({ searchQuery, onSearchChange }: ProjectsHeaderProps) {
+export function ProjectsHeader({
+  searchQuery,
+  selectedCategory,
+  onSearchChange,
+  onCategoryChange,
+  categories,
+}: ProjectsHeaderProps) {
   return (
     <div className="border-b border-border">
       <div className="mx-auto max-w-7xl px-6 py-16 md:py-24">
@@ -21,15 +37,33 @@ export function ProjectsHeader({ searchQuery, onSearchChange }: ProjectsHeaderPr
           </p>
         </div>
 
-        <div className="relative mx-auto mt-8 max-w-2xl">
-          <Search className="absolute left-4 top-1/2 size-5 -translate-y-1/2 text-muted-foreground" />
-          <Input
-            type="search"
-            placeholder="Search projects..."
-            className="h-12 rounded-full bg-muted/50 pl-11 pr-4 text-base border-muted"
-            value={searchQuery}
-            onChange={(e) => onSearchChange(e.target.value)}
-          />
+        <div className="mx-auto mt-8 max-w-2xl space-y-4">
+          <div className="relative">
+            <Search className="absolute left-4 top-1/2 size-5 -translate-y-1/2 text-muted-foreground" />
+            <Input
+              type="search"
+              placeholder="Search projects..."
+              className="h-12 rounded-full bg-muted/50 pl-11 pr-4 text-base border-muted"
+              value={searchQuery}
+              onChange={(e) => onSearchChange(e.target.value)}
+            />
+          </div>
+
+          <div className="flex justify-center">
+            <Select value={selectedCategory} onValueChange={onCategoryChange}>
+              <SelectTrigger className="w-48">
+                <SelectValue placeholder="Filter by category" />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="all">All Categories</SelectItem>
+                {categories.map((category) => (
+                  <SelectItem key={category} value={category}>
+                    {category}
+                  </SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
+          </div>
         </div>
       </div>
     </div>

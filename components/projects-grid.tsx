@@ -7,21 +7,30 @@ import { useMemo } from "react"
 
 interface ProjectsGridProps {
   searchQuery: string
+  selectedCategory: string
 }
 
-export function ProjectsGrid({ searchQuery }: ProjectsGridProps) {
+export function ProjectsGrid({ searchQuery, selectedCategory }: ProjectsGridProps) {
   const sortedProjects = useMemo(() => {
     return [...projects].sort((a, b) => a.name.localeCompare(b.name))
   }, [])
 
+  // Filter by category first
+  const categoryFiltered = useMemo(() => {
+    if (selectedCategory === "all") {
+      return sortedProjects
+    }
+    return sortedProjects.filter((p) => p.category === selectedCategory)
+  }, [sortedProjects, selectedCategory])
+
   const searchResults = useMemo(() => {
-    return search(sortedProjects, searchQuery, {
+    return search(categoryFiltered, searchQuery, {
       fields: ["name", "description", "category", "cohort"],
       fuzzyThreshold: 0.3,
     })
-  }, [sortedProjects, searchQuery])
+  }, [categoryFiltered, searchQuery])
 
-  const displayProjects = searchQuery ? searchResults.map(r => r.item) : sortedProjects
+  const displayProjects = searchQuery ? searchResults.map(r => r.item) : categoryFiltered
 
   return (
     <div className="mx-auto max-w-7xl px-6 py-16">
