@@ -36,7 +36,7 @@ export function ProjectCard({ project, stars }: ProjectCardProps) {
       <CardHeader>
         <div className="flex items-start justify-between gap-2">
           <div className="flex-1 space-y-2">
-            <CardTitle className="text-xl">{project.name}</CardTitle>
+            <CardTitle className="font-mono text-xl">{project.name}</CardTitle>
             <div className="flex items-center gap-2">
               <Badge className="font-normal text-xs" variant="secondary">
                 {project.category}
