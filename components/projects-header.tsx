@@ -1,6 +1,6 @@
 "use client"
 
-import { Input } from "@/components/ui/input"
+import { InputGroup, InputGroupInput, InputGroupAddon } from "@/components/ui/input-group"
 import { Button } from "@/components/ui/button"
 import { Command, CommandEmpty, CommandGroup, CommandInput, CommandItem, CommandList } from "@/components/ui/command"
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover"
@@ -34,59 +34,60 @@ export function ProjectsHeader({ categories }: ProjectsHeaderProps) {
         </div>
 
         <div className="mx-auto mt-8 max-w-2xl">
-          <div className="flex gap-2">
-            <div className="relative flex-1">
-              <Search className="absolute left-4 top-1/2 size-5 -translate-y-1/2 text-muted-foreground" />
-              <Input
-                type="search"
-                placeholder="Search projects..."
-                className="h-12 rounded-full bg-muted/50 pl-11 pr-4 text-base border-muted"
-                value={query ?? ""}
-                onChange={(e) => setQuery(e.target.value || null)}
-              />
-            </div>
-            <Popover open={open} onOpenChange={setOpen}>
-              <PopoverTrigger asChild>
-                <Button
-                  variant="outline"
-                  role="combobox"
-                  aria-expanded={open}
-                  className="h-12 w-[200px] justify-between rounded-full bg-muted/50"
-                >
-                  {selectedCategory?.label}
-                  <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
-                </Button>
-              </PopoverTrigger>
-              <PopoverContent className="w-[200px] p-0">
-                <Command>
-                  <CommandInput placeholder="Search category..." />
-                  <CommandList>
-                    <CommandEmpty>No category found.</CommandEmpty>
-                    <CommandGroup>
-                      {allCategories.map((cat) => (
-                        <CommandItem
-                          key={cat.value}
-                          value={cat.value}
-                          onSelect={(currentValue) => {
-                            setCategory(currentValue === "all" ? null : currentValue)
-                            setOpen(false)
-                          }}
-                        >
-                          <Check
-                            className={cn(
-                              "mr-2 h-4 w-4",
-                              (category ?? "all") === cat.value ? "opacity-100" : "opacity-0"
-                            )}
-                          />
-                          {cat.label}
-                        </CommandItem>
-                      ))}
-                    </CommandGroup>
-                  </CommandList>
-                </Command>
-              </PopoverContent>
-            </Popover>
-          </div>
+          <InputGroup className="rounded-full bg-muted">
+            <InputGroupAddon>
+              <Search />
+            </InputGroupAddon>
+            <InputGroupInput
+              type="search"
+              placeholder="Search projects..."
+              value={query ?? ""}
+              onChange={(e) => setQuery(e.target.value || null)}
+            />
+            <InputGroupAddon align="inline-end" className="pr-1">
+              <Popover open={open} onOpenChange={setOpen}>
+                <PopoverTrigger asChild>
+                  <Button
+                    variant="ghost"
+                    role="combobox"
+                    aria-expanded={open}
+                    className="justify-between text-sm rounded-full"
+                  >
+                    {selectedCategory?.label}
+                    <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
+                  </Button>
+                </PopoverTrigger>
+                <PopoverContent className="w-[200px] p-0" align="end">
+                  <Command>
+                    <CommandInput placeholder="Search category..." />
+                    <CommandList>
+                      <CommandEmpty>No category found.</CommandEmpty>
+                      <CommandGroup>
+                        {allCategories.map((cat) => (
+                          <CommandItem
+                            key={cat.value}
+                            value={cat.value}
+                            onSelect={(currentValue) => {
+                              setCategory(currentValue === "all" ? null : currentValue)
+                              setOpen(false)
+                            }}
+                          >
+                            <Check
+                              className={cn(
+                                "mr-2 h-4 w-4",
+                                (category ?? "all") === cat.value ? "opacity-100" : "opacity-0"
+                              )}
+                            />
+                            {cat.label}
+                          </CommandItem>
+                        ))}
+                      </CommandGroup>
+                    </CommandList>
+                  </Command>
+                </PopoverContent>
+              </Popover>
+            </InputGroupAddon>
+          </InputGroup>
         </div>
       </div>
     </div>
