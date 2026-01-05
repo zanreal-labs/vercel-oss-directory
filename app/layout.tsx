@@ -8,9 +8,19 @@ import type React from "react";
 import { Suspense } from "react";
 import { Footer } from "@/components/footer";
 import { ThemeProvider } from "@/components/theme-provider";
+import { cn } from "@/lib/utils";
 
-const _geist = Geist({ subsets: ["latin"] });
-const _geistMono = Geist_Mono({ subsets: ["latin"] });
+const fontSans = Geist({
+  subsets: ["latin"],
+  variable: "--font-sans",
+  display: "swap",
+});
+
+const fontMono = Geist_Mono({
+  subsets: ["latin"],
+  variable: "--font-mono",
+  display: "swap",
+});
 
 export const metadata: Metadata = {
   title: "Projects Directory - Vercel OSS Program",
@@ -42,7 +52,13 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className={"flex min-h-screen flex-col font-sans antialiased"}>
+      <body
+        className={cn(
+          fontSans.variable,
+          fontMono.variable,
+          "flex min-h-screen flex-col font-sans antialiased"
+        )}
+      >
         <NuqsAdapter>
           <Suspense>
             <ThemeProvider
