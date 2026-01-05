@@ -95,6 +95,9 @@ importers:
       '@vercel/analytics':
         specifier: 1.3.1
         version: 1.3.1(next@16.0.10(react-dom@19.2.0(react@19.2.0))(react@19.2.0))(react@19.2.0)
+      '@zanreal/search':
+        specifier: 1.0.0
+        version: 1.0.0
       autoprefixer:
         specifier: ^10.4.20
         version: 10.4.20(postcss@8.5.0)
@@ -1222,6 +1225,10 @@ packages:
         optional: true
       react:
         optional: true
+
+  '@zanreal/search@1.0.0':
+    resolution: {integrity: sha512-gEkFvynFdJIF03ocrBjJjQc6YpbfeSCkpkKo9s4iNHE+mRa6Rul+BFzVyqVNPZolKJ4kTR7pWGuf9nMHHJgPrw==}
+    engines: {node: '>=16.0.0'}
 
   aria-hidden@1.2.6:
     resolution: {integrity: sha512-ik3ZgC9dY/lYVVM++OISsaYDeg1tb0VtP5uL3ouh1koGOaUMDPpbFIei4JkFimWUFPn90sbMNMXQAIVOlnYKJA==}
@@ -2733,6 +2740,8 @@ snapshots:
     optionalDependencies:
       next: 16.0.10(react-dom@19.2.0(react@19.2.0))(react@19.2.0)
       react: 19.2.0
+
+  '@zanreal/search@1.0.0': {}
 
   aria-hidden@1.2.6:
     dependencies:

@@ -1,7 +1,14 @@
+"use client"
+
 import { Input } from "@/components/ui/input"
 import { Search } from "lucide-react"
 
-export function ProjectsHeader() {
+interface ProjectsHeaderProps {
+  searchQuery: string
+  onSearchChange: (query: string) => void
+}
+
+export function ProjectsHeader({ searchQuery, onSearchChange }: ProjectsHeaderProps) {
   return (
     <div className="border-b border-border">
       <div className="mx-auto max-w-7xl px-6 py-16 md:py-24">
@@ -21,6 +28,8 @@ export function ProjectsHeader() {
             type="search"
             placeholder="Search projects..."
             className="h-12 rounded-full bg-muted/50 pl-11 pr-4 text-base border-muted"
+            value={searchQuery}
+            onChange={(e) => onSearchChange(e.target.value)}
           />
         </div>
       </div>
