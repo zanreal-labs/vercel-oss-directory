@@ -30,7 +30,7 @@ export function Nav() {
               >
                 <title>Vercel OSS Program Logo</title>
                 <path
-                  d="M37.5274 0L75.0548 65H0L37.5274 0Z" fill="#ffffff"
+                  d="M37.5274 0L75.0548 65H0L37.5274 0Z" fill="currentColor"
                 />
               </svg>
             </Link>
