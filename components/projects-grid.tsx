@@ -2,7 +2,7 @@
 
 import { ProjectCard } from "@/components/project-card"
 import { projects } from "@/lib/projects"
-import { useSearch } from "@zanreal/search"
+import { search } from "@zanreal/search"
 import { useMemo } from "react"
 
 interface ProjectsGridProps {
@@ -14,14 +14,14 @@ export function ProjectsGrid({ searchQuery }: ProjectsGridProps) {
     return [...projects].sort((a, b) => a.name.localeCompare(b.name))
   }, [])
 
-  const { results } = useSearch({
-    items: sortedProjects,
-    query: searchQuery,
-    keys: ["name", "description", "category", "cohort"],
-    threshold: 0.3,
-  })
+  const searchResults = useMemo(() => {
+    return search(sortedProjects, searchQuery, {
+      fields: ["name", "description", "category", "cohort"],
+      fuzzyThreshold: 0.3,
+    })
+  }, [sortedProjects, searchQuery])
 
-  const displayProjects = searchQuery ? results : sortedProjects
+  const displayProjects = searchQuery ? searchResults.map(r => r.item) : sortedProjects
 
   return (
     <div className="mx-auto max-w-7xl px-6 py-16">
