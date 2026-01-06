@@ -35,8 +35,25 @@ export function ProjectCard({ project, stars }: ProjectCardProps) {
     <Card className="group h-full transition-colors hover:border-foreground/20">
       <CardHeader>
         <div className="flex items-start justify-between gap-2">
-          <div className="flex-1 space-y-2">
-            <CardTitle className="font-mono text-xl">{project.name}</CardTitle>
+          <div className="flex flex-1 flex-col gap-2">
+            {project.docsUrl ? (
+              <Link
+                href={project.docsUrl}
+                rel="noopener noreferrer"
+                target="_blank"
+              >
+                <CardTitle className="font-mono text-xl">
+                  <span className="inline-flex items-center gap-2">
+                    {project.name}
+                    <ExternalLink className="size-4 text-muted-foreground" />
+                  </span>
+                </CardTitle>
+              </Link>
+            ) : (
+              <CardTitle className="font-mono text-xl">
+                {project.name}
+              </CardTitle>
+            )}
             <div className="flex items-center gap-2">
               <Badge className="font-normal text-xs" variant="secondary">
                 {project.category}
