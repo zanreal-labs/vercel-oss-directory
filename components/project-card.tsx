@@ -14,6 +14,7 @@ import { formatStars } from "@/lib/projects";
 interface ProjectCardProps {
   project: Project;
   stars?: number | null;
+  campaign?: string;
 }
 
 function isUserProfile(url: string): boolean {
@@ -28,7 +29,24 @@ function isUserProfile(url: string): boolean {
   }
 }
 
-export function ProjectCard({ project, stars }: ProjectCardProps) {
+function addUtmParams(url: string, campaign: string, content: string): string {
+  try {
+    const urlObj = new URL(url);
+    urlObj.searchParams.set("utm_source", "vercel-oss-directory");
+    urlObj.searchParams.set("utm_medium", "referral");
+    urlObj.searchParams.set("utm_campaign", campaign);
+    urlObj.searchParams.set("utm_content", content);
+    return urlObj.toString();
+  } catch {
+    return url;
+  }
+}
+
+export function ProjectCard({
+  project,
+  stars,
+  campaign = "directory",
+}: ProjectCardProps) {
   const isProfile = isUserProfile(project.url);
 
   return (
@@ -38,7 +56,7 @@ export function ProjectCard({ project, stars }: ProjectCardProps) {
           <div className="flex flex-1 flex-col gap-2">
             {project.docsUrl ? (
               <Link
-                href={project.docsUrl}
+                href={addUtmParams(project.docsUrl, campaign, "title")}
                 rel="noopener noreferrer"
                 target="_blank"
               >
@@ -80,7 +98,7 @@ export function ProjectCard({ project, stars }: ProjectCardProps) {
         <div className="mt-4 flex items-center gap-3">
           <Link
             className="inline-flex items-center gap-1 text-foreground text-sm transition-colors hover:text-foreground/70"
-            href={project.url}
+            href={addUtmParams(project.url, campaign, "github")}
             rel="noopener noreferrer"
             target="_blank"
           >
@@ -90,7 +108,7 @@ export function ProjectCard({ project, stars }: ProjectCardProps) {
           {project.docsUrl && (
             <Link
               className="inline-flex items-center gap-1 text-foreground text-sm transition-colors hover:text-foreground/70"
-              href={project.docsUrl}
+              href={addUtmParams(project.docsUrl, campaign, "docs")}
               target="_blank"
             >
               <span>Docs</span>
