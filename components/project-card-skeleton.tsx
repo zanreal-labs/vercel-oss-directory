@@ -13,9 +13,26 @@ import type { Project } from "@/lib/projects";
 
 interface ProjectCardSkeletonProps {
   project: Project;
+  campaign?: string;
 }
 
-export function ProjectCardSkeleton({ project }: ProjectCardSkeletonProps) {
+function addUtmParams(url: string, campaign: string, content: string): string {
+  try {
+    const urlObj = new URL(url);
+    urlObj.searchParams.set("utm_source", "vercel-oss-directory");
+    urlObj.searchParams.set("utm_medium", "referral");
+    urlObj.searchParams.set("utm_campaign", campaign);
+    urlObj.searchParams.set("utm_content", content);
+    return urlObj.toString();
+  } catch {
+    return url;
+  }
+}
+
+export function ProjectCardSkeleton({
+  project,
+  campaign = "directory",
+}: ProjectCardSkeletonProps) {
   return (
     <Card className="group h-full transition-colors hover:border-foreground/20">
       <CardHeader>
@@ -41,7 +58,7 @@ export function ProjectCardSkeleton({ project }: ProjectCardSkeletonProps) {
         <div className="mt-4 flex items-center gap-3">
           <Link
             className="inline-flex items-center gap-1 text-foreground text-sm transition-colors hover:text-foreground/70"
-            href={project.url}
+            href={addUtmParams(project.url, campaign, "github")}
             rel="noopener noreferrer"
             target="_blank"
           >
@@ -51,7 +68,7 @@ export function ProjectCardSkeleton({ project }: ProjectCardSkeletonProps) {
           {project.docsUrl && (
             <Link
               className="inline-flex items-center gap-1 text-foreground text-sm transition-colors hover:text-foreground/70"
-              href={project.docsUrl}
+              href={addUtmParams(project.docsUrl, campaign, "docs")}
               target="_blank"
             >
               <span>Docs</span>
