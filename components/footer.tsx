@@ -21,14 +21,13 @@ export function Footer() {
           </Link>
         </Button>
         <p className="text-center font-mono text-muted-foreground text-sm">
-          Made by{" "}
           <Button
             asChild
             className="inline-flex p-0 font-mono text-sm"
             variant="link"
           >
-            <Link href="https://zanreal.com" target="_blank">
-              ZanReal
+            <Link href="https://zanreal.com/services/websites-and-branding/websites" target="_blank">
+              ZanReal - Website Development
             </Link>
           </Button>
         </p>
